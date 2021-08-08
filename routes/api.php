@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\Auth\TokenController;
+use App\Http\Controllers\TitanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::get('/characters', [CharacterController::class, 'index']);
 Route::get('/characters/{character}', [CharacterController::class, 'show']);
+
+Route::get('/titans', [TitanController::class, 'index']);
+Route::get('/titans/{titan}', [TitanController::class, 'show']);
 
 // AUTH
 Route::post('/register', [RegisterController::class, 'register']);

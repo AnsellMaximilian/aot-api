@@ -13,4 +13,9 @@ class Character extends Model
         'name',
         'gender'
     ];
+
+    public function titan()
+    {
+        return $this->hasOne(Titan::class);
+    }
 }
