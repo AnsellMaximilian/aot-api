@@ -23,10 +23,20 @@ class TitanController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'height_m' => 'numeric'
+            'character_id' => 'nullable|numeric',
+            'height_m' => 'numeric',
+            'picture' => 'file|image|nullable'
         ]);
 
-        return Titan::create($request->all());
+        $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
+
+        $titan = Titan::create($request->all());
+
+        $titan->picture_url = $picture_url;
+
+        $titan->save();
+
+        return $titan;
     }
 
     public function destroy($id)

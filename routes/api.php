@@ -25,6 +25,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/characters', [CharacterController::class, 'store']);
     Route::delete('/characters/{character}', [CharacterController::class, 'destroy']);
     Route::put('/characters/{character}', [CharacterController::class, 'update']);
+
+    Route::post('/titans', [TitanController::class, 'store']);
+    Route::delete('/titans/{titan}', [TitanController::class, 'destroy']);
+    Route::put('/titans/{titan}', [TitanController::class, 'update']);
 });
 
 Route::get('/characters', [CharacterController::class, 'index']);
@@ -41,6 +45,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:san
 // ADMIN ROUTES
 Route::prefix('admin')->middleware(['auth:sanctum', 'admin.token'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+    Route::post('/photo-test', [DashboardController::class, 'photo']);
 });
 
 

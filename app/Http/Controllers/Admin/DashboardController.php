@@ -11,4 +11,12 @@ class DashboardController extends Controller
     {
         return 'You are an admin';
     }
+
+    public function photo(Request $request)
+    {
+
+        $file_url = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+
+        return $file_url;
+    }
 }
