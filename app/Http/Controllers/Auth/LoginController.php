@@ -20,7 +20,11 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if($user && Hash::check($request->password, $user->password)){
-            $token = $user->createToken('tokensecret')->plainTextToken;
+            $abilities = [];
+            if($user->isAdmin){
+                array_push($abilities, 'admin:all');
+            }
+            $token = $user->createToken('tokensecret', $abilities)->plainTextToken;
 
             return [
                 'user' => $user,
