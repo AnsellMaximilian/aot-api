@@ -14,7 +14,7 @@ class CharacterController extends Controller
 
     public function show(Character $character)
     {
-        return $character->titan;
+        return $character;
     }
 
     public function store(Request $request)
