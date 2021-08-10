@@ -28,7 +28,7 @@ class TitanController extends Controller
             'picture' => 'file|image|nullable'
         ]);
         $titan = Titan::create($request->all());
-        
+
         if($request->exists('picture')){
             $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
 
@@ -54,6 +54,14 @@ class TitanController extends Controller
             'height_m' => 'numeric',
             'picture' => 'file|image|nullable'
         ]);
+
+        if($request->exists('picture')){
+            $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
+
+            $titan->picture_url = $picture_url;
+    
+            $titan->save();
+        }
 
         return $titan->update($request->all());
     }
