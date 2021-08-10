@@ -21,10 +21,21 @@ class CharacterController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'gender' => 'in:male,female|nullable'
+            'gender' => 'in:male,female|nullable',
+            'picture' => 'file|image|nullable'
         ]);
 
-        return Character::create($request->all());
+        $character = Character::create($request->all());
+        
+        if($request->exists('picture')){
+            $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
+
+            $character->picture_url = $picture_url;
+    
+            $character->save();
+        }
+        
+        return $character;
     }
 
     public function destroy($id)
@@ -38,10 +49,6 @@ class CharacterController extends Controller
             'name' => 'required',
             'gender' => 'in:male,female|nullable'
         ]);
-
-        return 1;
-
-        return $character;
 
         return $character->update($request->all());
     }

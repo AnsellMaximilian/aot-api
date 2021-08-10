@@ -27,14 +27,15 @@ class TitanController extends Controller
             'height_m' => 'numeric',
             'picture' => 'file|image|nullable'
         ]);
-
-        $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
-
         $titan = Titan::create($request->all());
+        
+        if($request->exists('picture')){
+            $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
 
-        $titan->picture_url = $picture_url;
-
-        $titan->save();
+            $titan->picture_url = $picture_url;
+    
+            $titan->save();
+        }
 
         return $titan;
     }
@@ -48,12 +49,11 @@ class TitanController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'gender' => 'in:male,female|nullable'
+            'description' => 'required',
+            'character_id' => 'nullable|numeric',
+            'height_m' => 'numeric',
+            'picture' => 'file|image|nullable'
         ]);
-
-        return 1;
-
-        return $titan;
 
         return $titan->update($request->all());
     }
