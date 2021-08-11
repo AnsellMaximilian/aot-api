@@ -55,6 +55,9 @@ Route::middleware('auth:sanctum')->prefix('tokens')->group(function(){
     Route::get('/', function(){
         return 'test';
     });
+    Route::get('/get-user-from-token', function(Request $request){
+        return $request->user();
+    })->middleware('auth:sanctum');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
