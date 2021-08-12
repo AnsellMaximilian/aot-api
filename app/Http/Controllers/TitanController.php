@@ -9,12 +9,12 @@ class TitanController extends Controller
 {
     public function index()
     {
-        return Titan::all();
+        return Titan::with('shifter')->get();
     }
 
     public function show(Titan $titan)
     {
-        // $titan->shifter;
+        $titan->shifter;
         return $titan;
     }
 
