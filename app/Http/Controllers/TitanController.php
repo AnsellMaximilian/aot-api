@@ -15,7 +15,7 @@ class TitanController extends Controller
     public function show(Titan $titan)
     {
         // $titan->shifter;
-        return $titan->with('shifter')->first();
+        return $titan;
     }
 
     public function store(Request $request)

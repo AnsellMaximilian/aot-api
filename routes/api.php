@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // PROTECTED ROTUES
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware(['auth:sanctum', 'admin.token'])->group(function(){
     Route::post('/characters', [CharacterController::class, 'store']);
     Route::delete('/characters/{character}', [CharacterController::class, 'destroy']);
     Route::put('/characters/{character}', [CharacterController::class, 'update']);
@@ -52,12 +52,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin.token'])->group(funct
 // TOKEN ROUTES
 Route::middleware('auth:sanctum')->prefix('tokens')->group(function(){
     Route::post('/remove-all', [TokenController::class, 'removeAllTokens']);
-    Route::get('/', function(){
-        return 'test';
-    });
     Route::get('/get-user-from-token', function(Request $request){
         return $request->user();
-    })->middleware('auth:sanctum');
+    });
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

@@ -47,8 +47,17 @@ class CharacterController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'gender' => 'in:male,female|nullable'
+            'gender' => 'in:male,female|nullable',
+            'picture' => 'nullable|file|image'
         ]);
+
+        if($request->exists('picture')){
+            $picture_url = cloudinary()->upload($request->file('picture')->getRealPath())->getSecurePath();
+
+            $character->picture_url = $picture_url;
+    
+            $character->save();
+        }
 
         return $character->update($request->all());
     }
