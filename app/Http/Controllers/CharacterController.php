@@ -38,9 +38,9 @@ class CharacterController extends Controller
         return $character;
     }
 
-    public function destroy($id)
+    public function destroy(Character $character)
     {
-        return Character::destroy($id);
+        return $character->delete();
     }
 
     public function update(Request $request, Character $character)
