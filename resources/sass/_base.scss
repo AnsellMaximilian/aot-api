@@ -1,0 +1,124 @@
+body {
+    // font-family: 'Nunito', sans-serif;
+    font-family: 'Nova Square', cursive;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hero {
+    margin-top: 2rem;
+    h1 {
+        margin-top: 1rem;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    p {
+        margin-top: 1rem;
+        font-size: 1.25rem;
+    }
+    &__image {
+        img {
+            max-width: 100%;
+            width: 200px;
+            animation: spin 2s linear;
+            transition: all 2s;
+            &:hover {
+                transform: rotateY(360deg);
+            }
+        }
+    }
+}
+$link-item-height: 4rem;
+$link-item-animation-dur: 1s;
+
+$blue: #252E6A;
+.links-container {
+    margin: 3rem 0 2rem;
+   
+    a {
+        color: inherit;
+    }
+    .link-list {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        .link-item {
+            margin: 1rem 1rem 0;
+            text-decoration: none;
+            box-shadow: 0.5rem 0.5rem 0.5rem rgba(0,0,0,0.5);
+            cursor: pointer;
+            border-radius: 10rem;
+            position: relative;
+            background-color: black;
+            color: white;
+            height: $link-item-height;
+            padding-left: 2rem;
+            padding-right: $link-item-height + 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: max-content;
+            transition: all $link-item-animation-dur;
+            &:hover {
+                text-decoration: underline;
+                padding-right: 2rem;
+                padding-left: $link-item-height + 1rem;
+                background-color: white;
+                color: black;
+                .link-item__icon {
+                    left: 0;
+                    right: 100%;
+                    transform: translate(0, -50%);
+                    background-color: black;
+                    color: white;
+
+                }
+
+            }
+            &__icon {
+                transition: all $link-item-animation-dur;
+                background-color: white;
+                color: black;
+                font-size: 2rem;
+                position: absolute;
+                border-radius: 50%;
+                right: 0;
+                left: 100%;
+                top: 50%;
+                transform: translate(-100%, -50%);
+                width: $link-item-height;
+                height: $link-item-height;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            &--blue {
+                background-color: $blue;
+                &:hover {
+                    background-color: white;
+                    color: $blue;
+                    .link-item__icon {
+                        background-color: $blue;
+                        color: white;
+                    }
+                }
+                .link-item__icon {
+                    color: $blue;
+                }
+            }
+           
+        }
+    }
+}
