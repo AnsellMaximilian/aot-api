@@ -31,7 +31,7 @@
                 <div class="link-list">
                     <a class="link-item" href="https://github.com/AnsellMaximilian/aot-client">
                         <div class="link-item__icon"><i class="fab fa-github"></i></div>
-                        <div class="link-item__label"><span>Checkout the Repo</span></div>
+                        <div class="link-item__label"><span>Check the Repo</span></div>
                     </a>
                     <a class="link-item link-item--blue" href="https://attackontitanclient.netlify.app/">
                         <div class="link-item__icon"><i class="fas fa-book"></i></div>
